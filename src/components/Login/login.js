@@ -16,62 +16,39 @@ class Login extends Component {
         let username = e.target.username.value;
         let password = e.target.password.value;
 
-        if(this.validate(username,password)){
-            this.onLogin(username,password);
-        }else{
+        if (this.validate(username, password)) {
+            this.onLogin(username, password);
+        } else {
             NotificationService.danger('Error!', 'Please enter valid information!');
         }
     }
 
-    onLogin = (username,password) => {
-        // UserService.login(username,password)
-        //     .then((data) => {
-        //         NotificationService.success('Success!', 'User is logged in!');
-        //         // redirect to home
-        //         console.log(data)
-        //         // data shoud be {user, following}
-        //         // UserService.setLoggedInUser(data);
-        //         // to do: set user
-        //        // window.location.pathname = "/home"
-        //     })
-        //     .catch(function() {
-        //         NotificationService.danger('Error!', 'User can not log in');
-        //     });
-        const endpoint = "http://localhost:8080/login";
-
-
-        const user_object = {
-            username: username,
-            password: password
-        };
-        // OPTIONS /api/posts HTTP/1.1
-        // Origin: http://localhost:1111
-        //     Access-Control-Request-Method: DELETE
-        // Access-Control-Request-Headers: Shady-Status
-        let p  = axios.options(endpoint,{headers:{
-               "Origin": "http://localhost:3000",
-                'Access-Control-Request-Method': 'POST'
-        // Access-Control-Request-Headers: Shady-Status
-            }}).then(res => {
-            console.log(res)
-            // localStorage.setItem("authorization", res.data.token);
-            // return this.handleDashboard();
-        });
-        console.log(p)
+    onLogin = (username, password) => {
+        UserService.login(username, password)
+            .then((data) => {
+                NotificationService.success('Success!', 'User is logged in!');
+                // set user
+                UserService.setLoggedInUser(data.data);
+                // redirect to home
+                window.location.pathname = "/home"
+            })
+            .catch(function () {
+                NotificationService.danger('Error!', 'User can not log in');
+            });
     };
 
     handleDashboard() {
         axios.get("http://localhost:8080/users/ti").then(res => {
-        if (res.data === "success") {
-            this.props.history.push("/home");
-        } else {
-            alert("Authentication failure");
-        }
-    });
-}
+            if (res.data === "success") {
+                this.props.history.push("/home");
+            } else {
+                alert("Authentication failure");
+            }
+        });
+    }
 
-    validate = (username,password) => {
-        if(username==='' || password===''){
+    validate = (username, password) => {
+        if (username === '' || password === '') {
             return false;
         }
         return true;
@@ -104,9 +81,9 @@ class Login extends Component {
                         />
                     </div>
                     <button id="submit" type="submit" className={"btn btn-primary float-right"}
-                            >Submit</button>
+                    >Submit
+                    </button>
                 </form>
-
 
 
             </div>
@@ -119,8 +96,6 @@ class Login extends Component {
     }
 
 }
-
-
 
 
 export default Login;

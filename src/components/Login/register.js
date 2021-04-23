@@ -31,8 +31,7 @@ class Register extends Component {
                 // redirect to login
                 window.location.pathname = "/login"
             })
-            .catch(function(e) {
-                console.log(e)
+            .catch(function() {
                 NotificationService.danger('Error!', 'User can not be registered!');
             });
     }

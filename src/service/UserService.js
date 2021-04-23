@@ -1,6 +1,6 @@
 import axios from '../axios/axios';
 
-let loggedInUser = null; // User Object
+let loggedInUser = null; //{ accessToken , email, roles, tokenType: "Bearer", username }
 
 const UserService = {
 
@@ -43,7 +43,7 @@ const UserService = {
     },
 
     register: (username, password, repeatPassword, email, birthday) => {
-        return axios.post(`/register`, {
+        return axios.post(`/api/auth/register`, {
             "username": username,
             "password": password,
             "repeatPassword": repeatPassword,
@@ -52,7 +52,7 @@ const UserService = {
         });
     },
     login: (username, password) => {
-        return axios.post('/login', {
+        return axios.post('/api/auth/login', {
             "username": username,
             "password": password,
             // "repeatPassword": '',
