@@ -20,7 +20,7 @@ const header = (props) => {
                     <Nav className="mr-auto">
                         <Nav.Link href="/home" className="gold">Home</Nav.Link>
                         <Nav.Link href="/movies" className="gold">Movies</Nav.Link>
-                        <Nav.Link href="/tvSeries" className="gold">TV Shows</Nav.Link>
+
                     </Nav>
                     <Nav className="mr-0">
                         <Nav.Link href="/login" className="gold">Log in</Nav.Link>

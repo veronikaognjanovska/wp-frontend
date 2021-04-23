@@ -1,62 +1,86 @@
 import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import ApiService from "../../service/apiService";
-import UpComing from "./HomeUpcoming/upComing";
+import NewestMovies from "./HomeNewest/newest";
+import TopRatedMovies from "./HomeTopRated/topRated"
 import PopularMovies from "./HomePopularMovies/popularMovies"
+import  GoldenLadderService from "../../service/GoldenLadderService"
 
 class Home extends React.Component{
 
     constructor(props) {
         super(props);
         this.state={
-            upComing:[],
-            popularMovies:[]
+            newestMovies:[],
+            popularMovies:[],
+            topRatedMovies:[]
 
         }
     }
     componentDidMount() {
 
-        this.loadUpComing();
+
         this.loadPopularMovies();
+        this.loadTopRatedMovies();
+        this.loadNewest();
     }
 
     loadPopularMovies(){
-        ApiService.getUpcoming()
-            .then(data=>data.json())
+        GoldenLadderService.getPopular()
             .then(data=>{
                 this.setState({
-                    popularM: data.results
+                    popularMovies: data.data
                 });
             })
     }
-    loadUpComing(){
-        ApiService.getUpcoming()
-            .then(data=>data.json())
+    loadTopRatedMovies(){
+        GoldenLadderService.getTopRated()
             .then(data=>{
-                this.setState({
-                    upComing: data.results
-                });
+                this.setState(
+                    {
+                        topRatedMovies: data.data
+                    }
+                )
             })
     }
+    loadNewest(){
+        GoldenLadderService.getNewest()
+            .then(data=>{
+                this.setState({
+                    newestMovies:data.data
+                })
+            })
+    }
+
     render() {
             return(
-
-        <div className={"row "}>
-            <div className={"col-md-12"}>
-                <h3 className={"upcoming-movies"}>Upcoming movies</h3>
-            </div>
-            <div className={"col-md-12"}>
-                <UpComing  upComingMovies={this.state.upComing}/>
-            </div>
-            <div className={"col-md-12"}>
+        <div className="container">
+           <div className={"row mt-4"}>
+            <div className={"col"}>
                 <h3 className={"upcoming-movies"}>Popular movies</h3>
             </div>
-            <div className={"col-md-12"}>
-                <PopularMovies  popularMovies={this.state.popularM}/>
+            <div className={"col-md-12 mt-5"}>
+                <PopularMovies  popularMovies={this.state.popularMovies}/>
             </div>
+            {/*   <div className={"row mt-4"}>*/}
+            {/*<div className={"col"}>*/}
+            {/*    <h3 className={"upcoming-movies"}>Newest movies</h3>*/}
+            {/*</div>*/}
+            {/*<div className={"col-md-12 mt-5"}>*/}
+            {/*    <NewestMovies newestMovies={this.state.newestMovies}/>*/}
+            {/*</div>*/}
+            {/*   </div>*/}
+            {/*   <div className={"row mt-4"}>*/}
+
+            {/*<div className={"col"}>*/}
+            {/*    <h3 className={"upcoming-movies"}>TopRated movies</h3>*/}
+            {/*</div>*/}
+            {/*<div className={"col-md-12 mt-5"}>*/}
+            {/*    <TopRatedMovies  topRatedMovies={this.state.topRatedMovies}/>*/}
+            {/*</div>*/}
+            {/*   </div>*/}
+          </div>
         </div>
-
-
             )}
 
 }

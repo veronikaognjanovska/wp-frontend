@@ -5,32 +5,30 @@ const GoldenLadderService = {
     getMovie:(id)=>{
         return axios.get(`/m/${id}`);
     },
-    rateMovie:(id,rating)=>{
-        return axios.post(`/m/rate?rating=${rating}&id=${id}`,{
-            "rating":rating
-        });
-    },
-    rateSerie:(id,rating)=>{
-        return axios.post(`/m/rate?rating=${rating}&id=${id}`,{
-            "rating":rating
+    rateMovie:(id,rating,comment)=>{
+        return axios.post(`/m/rate?rating=${rating}&comment=${comment}`,{
+            "rating":rating,
+            "comment": comment
         });
     },
     getMoviesByGenre:(genre)=>{
         return axios.get(`/m/g/${genre}`);
     },
-    getSerie:(id)=>{
-      return axios.get(`/s/${id}`);
+    getNewest:()=>{
+        return axios.get(`/m/newest`);
     },
-    getSeriesByGenre:(genre)=> {
-        return axios.get(`/s/g/${genre}`);
+    getTopRated:()=>{
+        return axios.get(`/m/topRated`);
+    },
+    getPopular:()=>{
+      return axios.get(`/m/popular`)
     },
     getActor:(id)=>{
         return axios.get(`/a/${id}`)
     },
-    getDirector:(id)=>{
-        return axios.get(`/d/${id}`)
-    }
+
 
 
 
 };
+export default GoldenLadderService;

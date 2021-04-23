@@ -5,7 +5,7 @@ const API_KEY="9a60ff96502093b1dac5bc2adc4e192a";
 const ApiService ={
     findAll:(id)=>
         axios
-            .get(`${baseUrl}/3/find/${id}`,{
+            .get(`https://api.themoviedb.org/3/find/${id}`,{
                 params:{
                     api_key:API_KEY,
                     external_source:"imdb_id"
