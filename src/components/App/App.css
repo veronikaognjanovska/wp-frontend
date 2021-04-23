@@ -1,0 +1,88 @@
+main{
+  background-color: white;
+  height: 3000px;
+}
+.my-navbar{
+  background-color: #91091e !important;
+  height:100px;
+}
+#basic-navbar-nav {
+  background-color: #91091e !important;
+  padding: 20px;
+}
+img {
+  width: 70px !important;
+}
+.gold{
+  color:#DAA520 !important;
+}
+.gold:hover{
+  color:#ffc803 !important;
+}
+/*home css */
+
+.carousel-image{
+  /*margin:0 auto;*/
+  height: 450px;
+  width:800px;
+}
+.carousel-home{
+  /*width:800px;*/
+
+}
+.left-arrow{
+  position: absolute;
+  color:white;
+  z-index:1000;
+  /*left:0;*/
+  border:10px solid black;
+  border-radius:100%;
+  background-color: black;
+}
+.right-arrow{
+  position:absolute;
+  color:white;
+  /*right:0;*/
+  border:10px solid black;
+  border-radius:100%;
+  background-color: black;
+  z-index: 1000;
+}
+.upcoming-movies{
+  position: absolute;
+
+  color:blue;
+}
+.carousel-caption{
+  border: 3px solid black;
+  border-radius:5px;
+  background-color: black;
+}
+.carousel-row{
+  position:relative;
+}
+
+
+
+
+
+
+
+
+/*OGNJANOVSKA*/
+.btn-focus-none {
+  outline: 0;
+  box-shadow:none !important;
+}
+.btn-style:hover{
+  color: lightgreen !important;
+}
+.text-style{
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+
+
+
+
+
