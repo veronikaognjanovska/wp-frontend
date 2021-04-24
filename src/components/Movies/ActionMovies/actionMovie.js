@@ -13,7 +13,7 @@ import "../../App/App.css"
 
 const IMAGE_API="https://image.tmdb.org/t/p/original/";
 
-const comedy =(props)=> {
+const action =(props)=> {
 
     var settings={
         dots: false,
@@ -30,7 +30,7 @@ const comedy =(props)=> {
         <Container>
             <Slider {...settings}>
 
-                {props.comedyMovies.map((movie, index) => {
+                {props.actionMovies.map((movie, index) => {
 
                     return (
                         <Col className="cardimage">
@@ -58,7 +58,7 @@ const comedy =(props)=> {
         </Container>
     )
 }
-export default  comedy;
+export default  action;
 
 
 //  console.log(data.data.movie_results[0].poster_path

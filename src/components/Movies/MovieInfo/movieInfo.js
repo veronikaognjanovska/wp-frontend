@@ -11,6 +11,7 @@ import Trailer from "../Trailer/trailerMovie"
 const yt="https://www.youtube.com/watch?v=";
 const IMAGE_API="https://image.tmdb.org/t/p/original";
 
+
 const MovieInfo=(props)=>{
 
     const[movie,setMovie] = useState({});
@@ -35,7 +36,11 @@ const MovieInfo=(props)=>{
                 window.location.pathname = "/movies"
             })
 
-    }
+
+
+
+
+
 
 
         return (
@@ -46,25 +51,34 @@ const MovieInfo=(props)=>{
                 <div className="col-md-6 px-0">
                     <h1 className="display-4 font-weight-bold">{movie.originalTitle}  </h1>
                     <h3>{movie.datePublished}</h3>
-                    <p className="lead my-3">{movie.movieId}</p>
+                    <p className="lead my-3">{movie.genre}</p>
                     <p className="lead my-3">{movie.duration} minutes</p>
                     <p className="lead my-3">{movie.country}</p>
 
-                    <div className="list-group">
-                        <ReactStars
-                            count={5}
-                            onChange={ratingChanged}
-                            size={24}
-                            activeColor="#ffd700"
-                        />
+        
 
-                        <button type="button" className="btn btn-primary btn-circle btn-sm">WatchList</button>
-                        {/*<Trailer movie={movie}/>*/}
+                        {/*<div className="list-group">*/}
+                        {/*    <ReactStars*/}
+                        {/*        count={5}*/}
+                        {/*        onChange={ratingChanged}*/}
+                        {/*        size={24}*/}
+                        {/*        activeColor="#ffd700"*/}
+                        {/*    />*/}
+
+                            <button type="button" className="btn btn-primary btn-circle btn-sm">WatchList</button>
+                            {/*<Trailer movie={movie}/>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
-            </div>
 
-        );
-    }
+
+            }));
+
+
+
 
 export default MovieInfo;
+
+}
+
+
