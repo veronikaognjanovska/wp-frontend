@@ -12,7 +12,6 @@ import Header from '../Header/header';
 // import 'react-notifications-component/dist/theme.css'
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer} from 'react-notifications';
-import UserService from "../../service/UserService";
 
 function App() {
 

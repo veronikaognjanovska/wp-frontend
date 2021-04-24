@@ -1,5 +1,5 @@
 import axios from '../axios/axios';
-import StorageService from './StorageService';
+import {StorageService} from './StorageService';
 
 
 const UserService = {

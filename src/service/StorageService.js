@@ -1,5 +1,9 @@
 // import NotificationService from "./NotificationService";
 
+import {BehaviorSubject} from "rxjs";
+
+const subscriber = new BehaviorSubject(0);
+
 const StorageService = {
 
     setToken: (token) => {
@@ -31,6 +35,7 @@ const StorageService = {
         }
         localStorage.setItem('USER', JSON.stringify({username: user?.username, role: user?.roles}));
         StorageService.setToken(user.accessToken);
+        subscriber.next(0); // notify all to reload loggedInUser
     },
 
 
@@ -45,4 +50,4 @@ const StorageService = {
 
 };
 
-export default StorageService;
+export {StorageService, subscriber};

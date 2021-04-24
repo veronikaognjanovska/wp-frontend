@@ -1,5 +1,5 @@
 import axios from "axios";
-import StorageService from "../service/StorageService";
+import {StorageService} from "../service/StorageService";
 
 let getHeaders = () => {
     const token = StorageService.getToken();
