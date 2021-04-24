@@ -4,59 +4,51 @@ import ReactStars from "react-rating-stars-component";
 import GoldenLadderService from "../../../service/GoldenLadderService";
 import ApiService from "../../../service/apiService";
 import axios from "axios";
-import Image1 from "../Image1/image1";
+import Image from "../Image1/image1";
 import Trailer from "../Trailer/trailerMovie"
 
 
 const yt="https://www.youtube.com/watch?v=";
 const IMAGE_API="https://image.tmdb.org/t/p/original";
 
-class MovieInfo extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={
-            movie:{}
-        }
+const MovieInfo=(props)=>{
 
+    const[movie,setMovie] = useState({});
 
-    }
-    componentDidMount(){
-        console.log(this.props.match);
-        GoldenLadderService.getMovie(this.props.match.params.id)
+    useEffect(()=>{
+        fetchMovie();
+    },{})
 
-            .then(data => this.setState({movie:data.data} ))
+   const fetchMovie=()=>{
 
-            .catch(error => console.log("Error : " + error));
+        GoldenLadderService.getMovie(props.match.params.id)
+            .then(data=>setMovie(data.data))
+            .catch(error=>console.log("Error: "+error));
 
     }
 
+    const ratingChanged = (newRating) => {
+        GoldenLadderService.rateMovie(movie.id, newRating)
+            .then(() => {
+                // NotificationService.success('Success!', 'Movie is rated!');
+                // redirect to login
+                window.location.pathname = "/movies"
+            })
 
-    render() {
-        const ratingChanged = (newRating) => {
-            GoldenLadderService.rateMovie(movie.id,newRating)
-                .then(() => {
-                   // NotificationService.success('Success!', 'Movie is rated!');
-                    // redirect to login
-                    window.location.pathname = "/movies"
-                })
-            // console.log(newRating);
-        };
+    }
 
-        const {movie} = this.state;
-        if(movie==null){
-            return <div>Hi</div>;
-        }
+
         return (
             <div className="jumbotron p-3 p-md-5 text-white rounded bg-dark">
                 <div className="col-auto d-none d-lg-block">
-                    {/*<Image1 movie={movie}/>*/}
+                    <Image movieId={props.match.params.id}/>
                 </div>
                 <div className="col-md-6 px-0">
                     <h1 className="display-4 font-weight-bold">{movie.originalTitle}  </h1>
                     <h3>{movie.datePublished}</h3>
-                    <p className="lead my-3">{movie.genre}</p>
-                    <p className="lead my-3">runTime: {movie.duration}</p>
-                    <p className="lead my-3">{movie.language}</p>
+                    <p className="lead my-3">{movie.movieId}</p>
+                    <p className="lead my-3">{movie.duration} minutes</p>
+                    <p className="lead my-3">{movie.country}</p>
 
                     <div className="list-group">
                         <ReactStars
@@ -75,5 +67,4 @@ class MovieInfo extends React.Component{
         );
     }
 
-}
 export default MovieInfo;

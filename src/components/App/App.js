@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import UserProfile from "../Users/userProfile";
 import Login from "../Login/login";
 import Register from "../Login/register";
-import Movie from "../Movies/MovieInfo/movieInfo"
+import MovieInfo from "../Movies/MovieInfo/movieInfo"
 import Home from '../Home/home';
 import Header from '../Header/header';
 
@@ -30,8 +30,8 @@ function App() {
                     <Route path={["/home","/"]} exact render={() =>
                     <Home/>}/>
 
-                    <Route exact path={"/movies/:id"} render={props=>
-                    <Movie {...props}/>}/>
+                    <Route path={"/movies/:id"} render={props=>
+                    <MovieInfo {...props}/>}/>
 
                     {/*<Route path={"/actors"} exact render={() =>*/}
                     {/*    <Actors/>}/>*/}

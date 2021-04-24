@@ -2,7 +2,6 @@ import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom';
 // import ApiService from "../../service/apiService";
 import {Card, CardGroup, Col, Container} from 'react-bootstrap';
-import ApiService from "../../../service/apiService";
 import CardImage from "../Image/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
