@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import "../home.css"
+import "../../App/App.css"
 
 
 const IMAGE_API="https://image.tmdb.org/t/p/original/";
@@ -32,15 +33,20 @@ const popular =(props)=> {
             {props.popularMovies.map((movie, index) => {
 
             return (
-                <Col >
+                <Col className="cardimage">
                     <Link to={`/movies/${movie.movieId}`}>
                 <Card >
 
-                    <CardImage variant="top"   movie={movie}/>
-                    <Card.Body>
+                    <CardImage className={"image__img " } variant="top"   movie={movie}/>
+                    <Card.Body  >
 
                         <Card.Title>{movie.originalTitle}</Card.Title>
+                        <div  className={"image__overlay image__overlay--primary "}>
+                        <div className={"overview"}>Overview: {movie.description}</div>
+                        <p className={"vote"}>Avg. rating: {movie.avgVote}</p>
+                        </div>
                     </Card.Body>
+
 
                 </Card>
                     </Link>

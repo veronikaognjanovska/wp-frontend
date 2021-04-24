@@ -55,7 +55,7 @@ class Home extends React.Component{
     render() {
             return(
             <div>
-                <div className={"row mt-4"}>
+                <div className={"row pt-4"}>
                 <div className={"col"}>
                     <h3 className={"upcoming-movies "}>Popular movies</h3>
                 </div>
