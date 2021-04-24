@@ -66,9 +66,46 @@ text-align: center;
 .main{
   background-color: #f4c983;
 }
+.cardimage{
+  position: relative;
+}
+.image__img{
+  display: block;
+}
+.image__overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.image__overlay--primary{
+/*ckground-color: red;*/
+  backdrop-filter: blur(5px);
+}
+.image__overlay:hover {
+  opacity: 1;
+}
+.overview{
+  font-size: 15px;
+  color: white;
+  text-align: center;
 
 
-
+}
+.vote{
+  font-size: 20px;
+  color: indianred;
+}
 
 
 

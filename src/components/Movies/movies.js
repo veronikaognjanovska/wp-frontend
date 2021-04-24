@@ -4,13 +4,14 @@ import ApiService from "../../service/apiService";
 import UpComing from "./HomeUpcoming/upComing"
 import Popular from "./PopularMovies/popularMovies1"
 import MovieList from "./MovieList/movieList"
-
+import GoldenLadderService from "../../service/GoldenLadderService";
+import ComedyMovies from "../Movies/ComedyMovies/comedyMovies"
 class Movies extends React.Component{
 
     constructor(props) {
         super(props);
         this.state={
-            popular:[],
+            comedy:[],
             movieList:[]
 
         }
@@ -19,30 +20,27 @@ class Movies extends React.Component{
         this.loadPopularMovies();
     }
 
-
-    loadPopularMovies(){
-        ApiService.getUpcoming()
-            .then(data=>data.json())
+    loadComedyMovies(){
+        GoldenLadderService.getMoviesByGenre("Comedy")
             .then(data=>{
                 this.setState({
-                    popular: data.results
+                   comedyMovies: data.data
                 });
             })
     }
+
     render() {
         return(
 <div className="container">
             <div className={"row "}>
                 <div className={"col-md-12"}>
-                    <h3 className={"upcoming-movies"}>Popular movies</h3>
+                    <h3 className={"upcoming-movies"}>Comedy movies</h3>
                 </div>
                 <div className={"col-md-12"}>
-                    <Popular  popularMovies={this.state.popular}/>
+                    <ComedyMovies  comedyMovies={this.state.comedy}/>
                 </div>
             </div>
-    <div className="row">
-        <MovieList movieList={this.state.movieList}/>
-    </div>
+ 
 </div>
 
         )}
