@@ -6,10 +6,6 @@ import './login.css';
 
 class Register extends Component {
 
-    constructor() {
-        super();
-    }
-
     onFormSubmit = (e) => {
         e.preventDefault();
         let username = e.target.username.value;
@@ -17,27 +13,27 @@ class Register extends Component {
         let repeatPassword = e.target.repeatPassword.value;
         let email = e.target.email.value;
         let birthday = e.target.birthday.value;
-        if(this.validate(username,password,repeatPassword,email,birthday)){
-            this.onRegister(username,password,repeatPassword,email,birthday);
-        }else{
+        if (this.validate(username, password, repeatPassword, email, birthday)) {
+            this.onRegister(username, password, repeatPassword, email, birthday);
+        } else {
             NotificationService.danger('Error!', 'Please enter valid information!');
         }
     }
 
-    onRegister = (username,password,repeatPassword,email,birthday) => {
-        UserService.register(username,password,repeatPassword,email,birthday)
+    onRegister = (username, password, repeatPassword, email, birthday) => {
+        UserService.register(username, password, repeatPassword, email, birthday)
             .then(() => {
                 NotificationService.success('Success!', 'User is registered!');
                 // redirect to login
                 window.location.pathname = "/login"
             })
-            .catch(function() {
+            .catch(function () {
                 NotificationService.danger('Error!', 'User can not be registered!');
             });
     }
 
-    validate = (username,password,repeatPassword,email,birthday) => {
-        if(username==='' || password==='' || repeatPassword==='' || email==='' || birthday==='' ){
+    validate = (username, password, repeatPassword, email, birthday) => {
+        if (username === '' || password === '' || repeatPassword === '' || email === '' || birthday === '') {
             return false;
         }
         return true;
@@ -94,7 +90,8 @@ class Register extends Component {
                         />
                     </div>
                     <button id="submit" type="submit" className={"btn btn-primary float-right"}
-                    >Submit</button>
+                    >Submit
+                    </button>
                 </form>
             </div>
         );
@@ -105,8 +102,6 @@ class Register extends Component {
     }
 
 }
-
-
 
 
 export default Register;
