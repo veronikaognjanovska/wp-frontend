@@ -31,19 +31,14 @@ function App() {
                     <Route path={["/home","/"]} exact render={() =>
                     <Home/>}/>
 
-
-                    <Route path={"/movies/:id"} render={props=>
+                    <Route exact path={"/movies/:id"} render={props=>
                     <MovieInfo {...props}/>}/>
 
-
-
-
-
-                    <Route path={"/movies"} exact render={()=>
+                    <Route exact path={"/movies"}  render={()=>
                     <Movies/>}/>
 
-                    <Route exact path={"/movies/genre/:genre"} render={()=>
-                        <MoviesGenre/>}/>
+                    <Route  path={"/movies/genre/:genre"} render={props=>
+                        <MoviesGenre {...props}/>}/>
 
 
 

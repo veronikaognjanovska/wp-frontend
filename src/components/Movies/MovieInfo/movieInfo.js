@@ -37,8 +37,7 @@ const MovieInfo=(props)=>{
             })
 
 
-
-
+    }
 
 
 
@@ -57,28 +56,28 @@ const MovieInfo=(props)=>{
 
         
 
-                        {/*<div className="list-group">*/}
-                        {/*    <ReactStars*/}
-                        {/*        count={5}*/}
-                        {/*        onChange={ratingChanged}*/}
-                        {/*        size={24}*/}
-                        {/*        activeColor="#ffd700"*/}
-                        {/*    />*/}
+                        <div className="list-group">
+                            <ReactStars
+                                count={5}
+                                onChange={ratingChanged}
+                                size={24}
+                                activeColor="#ffd700"
+                            />
 
                             <button type="button" className="btn btn-primary btn-circle btn-sm">WatchList</button>
-                            {/*<Trailer movie={movie}/>*/}
-                        {/*</div>*/}
+                            {/*<Trailer movieId={props.match.params.id}/>*/}
+                        </div>
                     </div>
                 </div>
 
 
-            }));
+            );
 
 
-
-
-export default MovieInfo;
 
 }
+export default MovieInfo;
+
+
 
 
