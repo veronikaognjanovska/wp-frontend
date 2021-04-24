@@ -3,25 +3,28 @@ import {Link} from 'react-router-dom';
 import ApiService from "../../../service/apiService";
 import {Card,CardGroup} from 'react-bootstrap';
 
-const IMAGE_API="https://image.tmdb.org/t/p/original/";
+const IMAGE_API="https://image.tmdb.org/t/p/w500";
 
-const CardImage = ({movieId, ...props}) => {
 
-    const [path, setPath] = useState([]);
+    const CardImage = (props) => {
 
-    useEffect(() => {
-        imdbIdFind(movieId);
-    }, []);
+        const [path, setPath] = useState([]);
 
-    async function imdbIdFind(movieId) {
-        console.log(movieId);
-        var result = await ApiService.findAll(movieId);
-        console.log(result);
-        console.log(result.data);
-        console.log(result.data.movie_results[0]);
-        setPath(result.data.movie_results[0].poster_path);
+        useEffect(() => {
+            imdbIdFind();
+        }, []);
+
+        async function imdbIdFind() {
+
+            var result = await ApiService.findAll(props.movie.movieId);
+            console.log(result);
+            // console.log(result.data);
+            // console.log(result.data.movie_results[0]);
+            setPath(result.data.movie_results[0].poster_path);
+        }
+
+        return (<Card.Img  src={IMAGE_API + path} />)
     }
+    export default CardImage;
 
-    return (<Card.Img src={IMAGE_API + path} {...props}/>)
-}
-export default CardImage;
+

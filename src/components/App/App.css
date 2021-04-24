@@ -10,7 +10,8 @@ main{
   background-color: #91091e !important;
   padding: 20px;
 }
-img {
+
+.logo {
   width: 70px !important;
 }
 .gold{
@@ -49,9 +50,9 @@ img {
   z-index: 1000;
 }
 .upcoming-movies{
-  position: absolute;
+text-align: center;
+  color:darkred;
 
-  color:blue;
 }
 .carousel-caption{
   border: 3px solid black;
@@ -62,7 +63,9 @@ img {
   position:relative;
 }
 
-
+.main{
+  background-color: #f4c983;
+}
 
 
 

@@ -16,7 +16,7 @@ function App() {
         <Router>
             <ReactNotification/>
             <Header/>
-            <main>
+            <main className={"main"}>
                 <div className={"container"}>
                     <Route path={"/login"} exact render={() =>
                         <Login/>}/>

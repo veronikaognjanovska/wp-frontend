@@ -1,41 +1,53 @@
-// import React,{useState,useEffect} from 'react';
-// import {Link} from 'react-router-dom';
-// // import ApiService from "../../service/apiService";
-// import {Card,CardGroup} from 'react-bootstrap';
-// import ApiService from "../../../service/apiService";
-//
-//
-// const IMAGE_API="https://image.tmdb.org/t/p/original/";
-// const newest =(props)=> {
-//
-//     function imdbIdFind(imdb_id) {
-//         // fetch data from a url endpoint
-//         var result;
-//         const response =  ApiService.findAll(imdb_id)
-//             .then(data=>{
-//                 console.log(data);
-//                 result=data.data.movie_results.poster_path;
-//                 console.log(result);
-//             })
-//         return result;
-//         // const data = await response.json;
-//         // console.log(response);
-//         // return response.movie_results.poster_path;
-//     }
-//     return (
-//             <CardGroup>
-//                 {props.newestMovies.map((movie, index) => {
-//                 return (
-//                     <Card style={{width: '18rem'}}>
-//                         {/*<Card.Img variant="top" src={IMAGE_API + imdbIdFind(movie.movieId)}/>*/}
-//                         <Card.Body>
-//                             <Card.Title>{movie.title}</Card.Title>
-//                         </Card.Body>
-//                     </Card>
-//                 )
-//             })}
-//             </CardGroup>
-//
-//         )
-// }
-// export default  newest;
+import React,{useState,useEffect} from 'react';
+import {Link} from 'react-router-dom';
+// import ApiService from "../../service/apiService";
+import {Card, CardGroup, Col, Container} from 'react-bootstrap';
+import ApiService from "../../../service/apiService";
+import CardImage from "../Image/image";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import "../home.css"
+
+const IMAGE_API="https://image.tmdb.org/t/p/original/";
+const newest =(props)=> {
+
+    var settings={
+        dots: false,
+        infinite: true,
+        speed: 200,
+        slidesToShow: 4,
+        slidesToScroll:1,
+        autoplay:true,
+
+
+    }
+
+return (
+    <Container>
+        <Slider {...settings}>
+
+            {props.newestMovies.map((movie, index) => {
+
+                return (
+                    <Col >
+                        <Link to={`/movies/${movie.movieId}`}>
+                            <Card >
+
+                                <CardImage variant="top"   movie={movie}/>
+                                <Card.Body>
+
+                                    <Card.Title>{movie.originalTitle}</Card.Title>
+                                </Card.Body>
+
+                            </Card>
+                        </Link>
+                    </Col>
+                )
+            })}
+
+        </Slider>
+    </Container>
+)
+}
+export default  newest;

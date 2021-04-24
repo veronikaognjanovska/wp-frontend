@@ -54,33 +54,37 @@ class Home extends React.Component{
 
     render() {
             return(
-        <div className="container">
-           <div className={"row mt-4"}>
-            <div className={"col"}>
-                <h3 className={"upcoming-movies"}>Popular movies</h3>
-            </div>
-            <div className={"col-md-12 mt-5"}>
-                <PopularMovies  popularMovies={this.state.popularMovies}/>
-            </div>
-            {/*   <div className={"row mt-4"}>*/}
-            {/*<div className={"col"}>*/}
-            {/*    <h3 className={"upcoming-movies"}>Newest movies</h3>*/}
-            {/*</div>*/}
-            {/*<div className={"col-md-12 mt-5"}>*/}
-            {/*    <NewestMovies newestMovies={this.state.newestMovies}/>*/}
-            {/*</div>*/}
-            {/*   </div>*/}
-            {/*   <div className={"row mt-4"}>*/}
+            <div>
+                <div className={"row mt-4"}>
+                <div className={"col"}>
+                    <h3 className={"upcoming-movies "}>Popular movies</h3>
+                </div>
+               </div>
 
-            {/*<div className={"col"}>*/}
-            {/*    <h3 className={"upcoming-movies"}>TopRated movies</h3>*/}
-            {/*</div>*/}
-            {/*<div className={"col-md-12 mt-5"}>*/}
-            {/*    <TopRatedMovies  topRatedMovies={this.state.topRatedMovies}/>*/}
-            {/*</div>*/}
-            {/*   </div>*/}
-          </div>
-        </div>
+                <div >
+                    <PopularMovies  popularMovies={this.state.popularMovies}/>
+                </div>
+
+                   <div className={"row mt-4"}>
+                <div className={"col"}>
+                    <h3 className={"upcoming-movies"}>Newest movies</h3>
+                </div>
+                   </div>
+                <div >
+                    <NewestMovies newestMovies={this.state.newestMovies}/>
+                </div>
+
+                   <div className={"row mt-4"}>
+                       <div className={"col"}>
+                    <h3 className={"upcoming-movies"}>Top Rated movies</h3>
+                </div>
+                   </div>
+                <div >
+                    <TopRatedMovies  topRatedMovies={this.state.topRatedMovies}/>
+                </div>
+
+
+            </div>
             )}
 
 }

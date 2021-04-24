@@ -1,50 +1,55 @@
 import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom';
 // import ApiService from "../../service/apiService";
-import {Card,CardGroup} from 'react-bootstrap';
+import {Card,CardGroup,Container,Col} from 'react-bootstrap';
 import ApiService from "../../../service/apiService";
 import CardImage from "../Image/image";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import "../home.css"
 
 
 const IMAGE_API="https://image.tmdb.org/t/p/original/";
 
 const popular =(props)=> {
 
-    // const [paths, setPath] = useState([]);
-    //
-    // useEffect(() => {
-    //     const getPaths = async ()=> {
-    //         const result = await Promise.all(props.popularMovies.map(movie => imdbIdFind(movie.movieId)));
-    //
-    //         setPath(...result);
-    //         console.log(paths);
-    //     }
-    //     getPaths();
-    // }, []);
-    //
-    // async function imdbIdFind(imdb_id) {
-    //     var result = await ApiService.findAll(imdb_id);
-    //     return result.data.movie_results[0].poster_path;
-    // }
-    //
+    var settings={
+        dots: false,
+        infinite: true,
+        speed: 200,
+        slidesToShow: 4,
+        slidesToScroll:1,
+        autoplay:true,
+
+
+    }
 
     return (
-        <CardGroup>
-            {props.popularMovies.map((movie, index) => {
-                console.log(movie);
-            return (
+        <Container>
+        <Slider {...settings}>
 
-                <Card style={{width: '18rem'}}>
-                    <CardImage variant="top" movie={movie.movieId}/>
+            {props.popularMovies.map((movie, index) => {
+
+            return (
+                <Col >
+                    <Link to={`/movies/${movie.movieId}`}>
+                <Card >
+
+                    <CardImage variant="top"   movie={movie}/>
                     <Card.Body>
 
                         <Card.Title>{movie.originalTitle}</Card.Title>
                     </Card.Body>
+
                 </Card>
+                    </Link>
+                </Col>
             )
         })}
-        </CardGroup>
 
+        </Slider>
+        </Container>
     )
 }
 export default  popular;

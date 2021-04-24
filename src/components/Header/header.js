@@ -9,7 +9,7 @@ const header = (props) => {
         <header>
             <Navbar expand="lg" className="my-navbar">
                 <Navbar.Brand href="#home" className="gold">Golden Ladder
-                    <img src={logo} alt="logo"/>
+                    <img className={"logo"} src={logo} alt="logo"/>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
