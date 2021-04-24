@@ -1,16 +1,19 @@
 import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom';
 // import ApiService from "../../service/apiService";
-import {Card, CardGroup, Col, Container} from 'react-bootstrap';
-import CardImage from "../Image/image";
-import Slider from "react-slick";
+import {Card,CardGroup,Container,Col} from 'react-bootstrap';
+import ApiService from "../../../service/apiService";
+import CardImage from "../../Home/Image/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../home.css";
+import Slider from "react-slick";
+
 import "../../App/App.css"
 
+
 const IMAGE_API="https://image.tmdb.org/t/p/original/";
-const topRated =(props)=> {
+
+const action =(props)=> {
 
     var settings={
         dots: false,
@@ -27,7 +30,7 @@ const topRated =(props)=> {
         <Container>
             <Slider {...settings}>
 
-                {props.topRatedMovies.map((movie, index) => {
+                {props.actionMovies.map((movie, index) => {
 
                     return (
                         <Col className="cardimage">
@@ -55,4 +58,23 @@ const topRated =(props)=> {
         </Container>
     )
 }
-export default  topRated;
+export default  action;
+
+
+//  console.log(data.data.movie_results[0].poster_path
+// fetch data from a url endpoint
+// var result;
+// const response =  ApiService.findAll(imdb_id)
+//     .then(data=>{
+//         console.log(data);
+//         console.log("ova e data.data "+data.movie_results);
+//         result=data.data.movie_results.poster_path;
+//
+//         console.log(result);
+//     })
+// return result;
+// const data = await response.json;
+// console.log(response);
+// return response.movie_results.poster_path;
+
+

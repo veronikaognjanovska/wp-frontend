@@ -41,7 +41,7 @@ const ApiService ={
     },
     getVideo:(id)=>{
         axios
-            .get(`${baseUrl}/3/movie/${id}/videos`,{
+            .get(`https://api.themoviedb.org/3/movie/${id}/videos`,{
                 params:{
                     api_key:API_KEY
 

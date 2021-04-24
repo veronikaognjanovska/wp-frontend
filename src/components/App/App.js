@@ -4,16 +4,19 @@ import UserProfile from "../Users/userProfile";
 import Login from "../Login/login";
 import Register from "../Login/register";
 import Logout from "../Login/logout";
-
+import MovieInfo from "../Movies/MovieInfo/movieInfo"
 import Home from '../Home/home';
 import Header from '../Header/header';
+import Movies from '../Movies/movies'
 
 // import ReactNotification from 'react-notifications-component'
 // import 'react-notifications-component/dist/theme.css'
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer} from 'react-notifications';
+import MoviesGenre from "../Movies/MoviesGenre/moviesGenre";
 
 function App() {
+
 
     return (
         <Router>
@@ -31,23 +34,34 @@ function App() {
                     <Route path={"/users/:username"}
                            children={<UserProfile/>}
                     />
-                    <Route path={"/home"} exact render={() =>
-                        <Home/>}/>
+                    <Route path={["/home","/"]} exact render={() =>
+                    <Home/>}/>
+
+                    <Route exact path={"/movies/:id"} render={props=>
+                    <MovieInfo {...props}/>}/>
+
+                    <Route exact path={"/movies"}  render={()=>
+                    <Movies/>}/>
+
+                    <Route  path={"/movies/genre/:genre"} render={props=>
+                        <MoviesGenre {...props}/>}/>
+
+
+
+
                     {/*<Route path={"/actors"} exact render={() =>*/}
                     {/*    <Actors/>}/>*/}
                     {/*<Route path={"/directors"} exact render={() =>*/}
                     {/*    <Directors/>}/>*/}
                     {/*<Route path={"/users"} exact render={() =>*/}
                     {/*    <Users/>}/>*/}
-                    {/*<Route path={"/movies/:name"} exact render={() =>*/}
-                    {/*    <Movie/>}/>*/}
+
                     {/*<Route exact component={MovieTerm} path="/movies/:name"/>*/}
-                    {/*{/<Route exact path={"/movies/:name"} render={props=>/}*/}
-                    {/*{/<Movie {...props}/>}/>*!/*/}
+
                     {/*<Route path={"/tvSeries"} exact render={() =>*/}
                     {/*    <TvSeries/>}/>*/}
-                    {/*<Route path={"/movies"} exact render={()=>*/}
-                    {/*    <MovieList movies={this.state.movies}/>}/>*/}
+                    {/*<Route path={"/movies/:id"} exact render={()=>*/}
+                    {/*    <MovieTerm movies={this.state.movies}/>}/>*/}
                 </div>
             </main>
         </Router>
