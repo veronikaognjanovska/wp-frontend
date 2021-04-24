@@ -1,12 +1,10 @@
 import React from 'react';
 import './modal.css';
-import {useHistory} from 'react-router-dom';
 
 const ModalEditUser = ({handleClose, onEdit, show, data}) => {
 
     const showHideClassName = show ? 'my-modal d-block' : 'my-modal d-none';
 
-    const history = useHistory();
     const [formData, updateFormData] = React.useState({
         email: '',
         birthday: ''
@@ -72,7 +70,9 @@ const ModalEditUser = ({handleClose, onEdit, show, data}) => {
                             </div>
                         </div>
                         <div className={"modal-footer"}>
-                            <button id="submit" type="submit" className={"btn btn-primary float-right"} onClick={handleClose}>Submit</button>
+                            <button id="submit" type="submit" className={"btn btn-primary float-right"}
+                                    onClick={handleClose}>Submit
+                            </button>
                             <button type={"button"} className={"btn btn-secondary"} data-dismiss="modal"
                                     onClick={handleClose}>Close
                             </button>

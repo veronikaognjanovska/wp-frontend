@@ -1,19 +1,14 @@
 import axios from '../axios/axios';
+import StorageService from './StorageService';
 
-let loggedInUser = null; //{ accessToken , email, roles, tokenType: "Bearer", username }
 
 const UserService = {
 
-    getLoggedInUser: () => {
-        return loggedInUser;
-    },
-
-    setLoggedInUser: (user) => {
-        loggedInUser = user;
-    },
-
     followUser: (username2) => {
-        return axios.put(`/users/${loggedInUser.username}/follow/${username2}`, {});
+        return axios.put(`/users/${StorageService.getLoggedInUser()?.username}/follow/${username2}`, {});
+    },
+    unfollowUser: (username2) => {
+        return axios.put(`/users/${StorageService.getLoggedInUser()?.username}/unfollow/${username2}`, {});
     },
 
     fetchUser: (username) => {
@@ -54,19 +49,35 @@ const UserService = {
     login: (username, password) => {
         return axios.post('/api/auth/login', {
             "username": username,
-            "password": password,
-            // "repeatPassword": '',
-            // "email": '',
-            // "birthday": ''
+            "password": password
         });
-        // return axios.post('/login', {
-        //     params: {
-        //         "username": username,
-        //         "password": password
-        //     }
-        // });
     },
 
+
+    getLoggedInUser: () => {
+        return StorageService.getLoggedInUser()?.username;
+    },
+    setLoggedInUser: (data) => {
+        if (data === null) {
+            StorageService.setLoggedInUser(data);
+        }
+        StorageService.setLoggedInUser(data);
+        UserService.getFollowingLoggedIn().then().catch();
+    },
+    getFollowingLoggedIn: () => {
+        const username = StorageService.getLoggedInUser()?.username;
+        if (username !== null & username !== undefined) {
+            return UserService.fetchUserFollowing(username)
+                .then((data) => {
+                    let list = data.data.map(item => {
+                        return {username: item.username}
+                    });
+                    StorageService.setUserFollowing(list);
+                    return Promise.resolve({username: username, following: list});
+                });
+        }
+        return Promise.resolve('null');
+    },
 
 };
 

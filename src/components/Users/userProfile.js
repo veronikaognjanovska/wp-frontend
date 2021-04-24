@@ -5,7 +5,7 @@ import logoUser from "../../assets/images/user_logo.png";
 
 import '../App/App.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faEdit} from '@fortawesome/free-solid-svg-icons'
+import {faEdit, faMinusCircle, faPlusCircle} from '@fortawesome/free-solid-svg-icons'
 import ModalLongFile from "../Modals/modalLongFile";
 import ModalEditUser from "../Modals/modalEditUser";
 
@@ -17,11 +17,12 @@ class UserProfile extends Component {
         super(props);
         this.state = {
             data: "", //<- should be user
-            username: '',
             show: false,
             showEdit: false,
             type: '',
-            dataList: []
+            dataList: [],
+            loggedInUserUsername: undefined,
+            loggedInUserFollowing: []
         }
     }
 
@@ -37,24 +38,39 @@ class UserProfile extends Component {
                 <div className={'row m-2 position-relative'}>
                     <div className={'mt-2 position-absolute'} style={{right: "0", top: "0"}}>
                         {
-                            this.state.username === UserService.getLoggedInUser().username &&
+                            // EDIT
+                            this.state.loggedInUserUsername !== undefined &&
+                            this.state.data.username === this.state.loggedInUserUsername &&
                             <button type={"button"} className={'btn btn-focus-none'}>
                                 <FontAwesomeIcon icon={faEdit} style={{fontSize: "20px", color: "green"}}
                                                  onClick={this.editUser}/>
                             </button>
                         }
                         {
-                            // and this.state.username is not already followed
-                            this.state.username !== UserService.getLoggedInUser().username &&
-
-                            <button type={"button"} className={'btn btn-focus-none'}>
-                                <FontAwesomeIcon icon={faEdit} style={{fontSize: "20px", color: "green"}}
-                                                 onClick={this.followUser}/>
+                            // FOLLOW
+                            this.state.loggedInUserUsername !== undefined &&
+                            this.state.data.username !== this.state.loggedInUserUsername &&
+                            !this.isFollowed() &&
+                            <button type={"button"} className={'btn btn-focus-none'}
+                                    style={{fontSize: "20px", color: "green"}}
+                                    onClick={this.followUser}>
+                                <FontAwesomeIcon icon={faPlusCircle}/> FOLLOW USER
+                            </button>
+                        }
+                        {
+                            // UNFOLLOW
+                            this.state.loggedInUserUsername !== undefined &&
+                            this.state.data.username !== this.state.loggedInUserUsername &&
+                            this.isFollowed() &&
+                            <button type={"button"} className={'btn btn-focus-none'}
+                                    style={{fontSize: "20px", color: "green"}}
+                                    onClick={this.unfollowUser}>
+                                <FontAwesomeIcon icon={faMinusCircle}/> UNFOLLOW USER
                             </button>
                         }
                     </div>
                     <div className={'col-sm-2 mt-2 mb-2'}>
-                        <img src={logoUser} alt="User image" width={100} height={100}/>
+                        <img src={logoUser} alt="User logo" width={100} height={100}/>
                     </div>
                     <div className={'col-sm-8'}>
                         <div className={'row m-2'}>
@@ -113,6 +129,7 @@ class UserProfile extends Component {
     }
 
     componentDidMount() {
+        this.getLoggedInUser();
         this.loadUser(this.getUrl());
     }
 
@@ -121,6 +138,28 @@ class UserProfile extends Component {
         if (username !== this.state.username) {
             this.loadUser(username);
         }
+    }
+
+    getLoggedInUser = () => {
+        UserService.getFollowingLoggedIn()
+            .then((data) => {
+                this.setState({
+                    loggedInUserUsername: data.username,
+                    loggedInUserFollowing: data.following
+                });// {username: item.username}
+            })
+            .catch(() => {
+                // no user
+            });
+    }
+
+    isFollowed = () => {
+        for (let i = 0; i < this.state.loggedInUserFollowing?.length; i++) {
+            if (this.state.loggedInUserFollowing[i].username === this.state.username) {
+                return true;
+            }
+        }
+        return false;
     }
 
     getUrl = () => {
@@ -158,7 +197,7 @@ class UserProfile extends Component {
 
     setUser = (data) => {
         const birthdayStirng =
-            data.data.birthday[0] + '-' + ("0" + data.data.birthday[1]).slice(-2) + '-' + ("0" + data.data.birthday[2]).slice(-2);
+            data.data.birthday.substr(0, 4) + '-' + data.data.birthday.substr(5, 2) + '-' + data.data.birthday.substr(8, 2);
         const user = {
             ...data.data,
             birthday: birthdayStirng
@@ -215,11 +254,20 @@ class UserProfile extends Component {
         UserService.followUser(this.state.username)
             .then((data) => {
                 NotificationService.success('Success!', 'User is followed!');
-                console.log(data)
                 this.componentDidMount();
             })
-            .catch(function() {
+            .catch(function () {
                 NotificationService.danger('Error!', 'User can not be followed!');
+            });
+    }
+    unfollowUser = () => {
+        UserService.unfollowUser(this.state.username)
+            .then((data) => {
+                NotificationService.success('Success!', 'User is unfollowed!');
+                this.componentDidMount();
+            })
+            .catch(function () {
+                NotificationService.danger('Error!', 'User can not be unfollowed!');
             });
     }
 

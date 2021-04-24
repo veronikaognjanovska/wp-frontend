@@ -3,18 +3,23 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import UserProfile from "../Users/userProfile";
 import Login from "../Login/login";
 import Register from "../Login/register";
+import Logout from "../Login/logout";
 
 import Home from '../Home/home';
 import Header from '../Header/header';
 
-import ReactNotification from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
+// import ReactNotification from 'react-notifications-component'
+// import 'react-notifications-component/dist/theme.css'
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer} from 'react-notifications';
+import UserService from "../../service/UserService";
 
 function App() {
 
     return (
         <Router>
-            <ReactNotification/>
+            {/*<ReactNotification/>*/}
+            <NotificationContainer/>
             <Header/>
             <main className={"main"}>
                 <div className={"container"}>
@@ -22,6 +27,8 @@ function App() {
                         <Login/>}/>
                     <Route path={"/register"} exact render={() =>
                         <Register/>}/>
+                    <Route path={"/logout"} exact render={() =>
+                        <Logout/>}/>
                     <Route path={"/users/:username"}
                            children={<UserProfile/>}
                     />
