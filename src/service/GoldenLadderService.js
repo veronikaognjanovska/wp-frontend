@@ -5,10 +5,10 @@ const GoldenLadderService = {
     getMovie:(id)=>{
         return axios.get(`/m/${id}`);
     },
-    rateMovie:(id,rating,comment)=>{
-        return axios.post(`/m/rate?rating=${rating}&comment=${comment}`,{
-            "rating":rating,
-            "comment": comment
+    rateMovie:(id,rating)=>{
+        return axios.post(`/m/${id}/rate?rating=${rating}`,{
+            "rating":rating
+
         });
     },
     getMoviesByGenre:(genre)=>{

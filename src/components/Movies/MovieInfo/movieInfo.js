@@ -29,7 +29,7 @@ const MovieInfo=(props)=>{
     }
 
     const ratingChanged = (newRating) => {
-        GoldenLadderService.rateMovie(movie.id, newRating)
+        GoldenLadderService.rateMovie(props.match.params.id, newRating)
             .then(() => {
                 // NotificationService.success('Success!', 'Movie is rated!');
                 // redirect to login
