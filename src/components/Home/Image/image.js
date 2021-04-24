@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom';
 import ApiService from "../../../service/apiService";
 import {Card,CardGroup} from 'react-bootstrap';
 
-const IMAGE_API="https://image.tmdb.org/t/p/w500";
+const IMAGE_API="https://image.tmdb.org/t/p/w500/";
 
 
-    const CardImage = (props) => {
+const CardImage = (props) => {
 
         const [path, setPath] = useState([]);
 

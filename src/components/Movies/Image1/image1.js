@@ -1,30 +1,39 @@
 import React,{useState,useEffect} from 'react';
-import {Link} from 'react-router-dom';
 import ApiService from "../../../service/apiService";
-import {Card,CardGroup} from 'react-bootstrap';
-
-const IMAGE_API="https://image.tmdb.org/t/p/w500";
 
 
-const CardImage = (props) => {
+const IMAGE_API="https://image.tmdb.org/t/p/w500/";
 
-    const [path, setPath] = useState([]);
 
-    useEffect(() => {
-        imdbIdFind();
-    }, []);
+class Image extends React.Component{
 
-    async function imdbIdFind() {
-        console.log(props.movie);
-        var result = await ApiService.findAll(props.movie.movieId);
-        console.log(result);
-        // console.log(result.data);
-        // console.log(result.data.movie_results[0]);
-        setPath(result.data.movie_results[0].poster_path);
+    constructor(props) {
+        super(props);
+        this.props = props;
+        this.state={
+            movieImage:{}
+        }
+
     }
 
-    return (<img  src={IMAGE_API + path} />)
+
+    componentDidMount() {
+        this.imdbIdFind();
+    }
+
+
+     async  imdbIdFind() {
+        var result = await ApiService.findAll(this.props.movieId);
+        this.setState({movieImage:result.data.movie_results[0].poster_path});
+    }
+
+
+    render() {
+        return (<img  src={IMAGE_API + this.state.movieImage} alt={"hello"}/>)
+    }
+
+
 }
-export default CardImage;
+export default Image;
 
 
