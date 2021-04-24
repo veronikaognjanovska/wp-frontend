@@ -6,10 +6,11 @@ import Register from "../Login/register";
 import Movie from "../Movies/MovieInfo/movieInfo"
 import Home from '../Home/home';
 import Header from '../Header/header';
-
+import Movies from '../Movies/movies'
 
 import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
+import MoviesGenre from "../Movies/MoviesGenre/moviesGenre";
 
 function App() {
 
@@ -30,8 +31,20 @@ function App() {
                     <Route path={["/home","/"]} exact render={() =>
                     <Home/>}/>
 
-                    <Route exact path={"/movies/:id"} render={props=>
-                    <Movie {...props}/>}/>
+                    {/*<Route exact path={"/movies/:id"} render={props=>*/}
+                    {/*<Movie {...props}/>}/>*/}
+
+                    <Route path={"/movies/:id"} exact render={()=>
+                        <Movie/>}/>
+
+
+                    <Route path={"/movies"} exact render={()=>
+                    <Movies/>}/>
+
+                    <Route exact path={"/movies/genre/:genre"} render={()=>
+                        <MoviesGenre/>}/>
+
+
 
                     {/*<Route path={"/actors"} exact render={() =>*/}
                     {/*    <Actors/>}/>*/}
