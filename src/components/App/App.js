@@ -9,10 +9,16 @@ import Home from '../Home/home';
 import Header from '../Header/header';
 import Movies from '../Movies/movies'
 
+import ActorInfo from "../Actors/ActorInfo/actorInfo";
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+
+
 // import ReactNotification from 'react-notifications-component'
 // import 'react-notifications-component/dist/theme.css'
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer} from 'react-notifications';
+
 import MoviesGenre from "../Movies/MoviesGenre/moviesGenre";
 import Search from "../Search/search";
 
@@ -49,6 +55,9 @@ function App() {
                     <Route path={"/movies/genre/:genre"} render={props =>
                         <MoviesGenre {...props}/>}/>
 
+                    <Route path={"/actors/:id"} render={props=>
+                        <ActorInfo {...props}/>}/>
+
 
                     {/*<Route path={"/actors"} exact render={() =>*/}
                     {/*    <Actors/>}/>*/}
@@ -63,6 +72,7 @@ function App() {
                     {/*    <TvSeries/>}/>*/}
                     {/*<Route path={"/movies/:id"} exact render={()=>*/}
                     {/*    <MovieTerm movies={this.state.movies}/>}/>*/}
+
                 </div>
             </main>
         </Router>

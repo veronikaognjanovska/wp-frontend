@@ -53,6 +53,7 @@ const header = (props) => {
                     <Nav className="mr-auto">
                         <Nav.Link href="/home" className="gold">Home</Nav.Link>
                         <Nav.Link href="/movies" className="gold">Movies</Nav.Link>
+                        {/*<Nav.Link href="/actors" className="gold">Actors</Nav.Link>*/}
                     </Nav>
                     {
                         username === undefined &&

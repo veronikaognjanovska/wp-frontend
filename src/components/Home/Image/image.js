@@ -8,11 +8,11 @@ const IMAGE_API="https://image.tmdb.org/t/p/w500/";
 
 const CardImage = (props) => {
 
-        const [path, setPath] = useState([]);
+        const [path, setPath] = useState({});
 
         useEffect(() => {
             imdbIdFind();
-        }, []);
+        }, {});
 
         async function imdbIdFind() {
 
