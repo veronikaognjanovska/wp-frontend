@@ -14,7 +14,7 @@ const ActorTerm = (props)=>{
 
     useEffect(()=>{
          console.log(props)
-        loadActor(props.actor.pk.actorId);
+        loadActor(props.actor.id.actorId);
     },[]);
 
     async function loadActor(id)

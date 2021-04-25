@@ -82,7 +82,7 @@ const MovieInfo = (props)=>{
         <div className={"row"}>
             <h3>Cast & Crew</h3>
             {/*<Slider {...settings}>*/}
-                {movie && movie.actors &&  movie.actors.map((actor,index)=>{
+                {movie && movie.actorMovies &&  movie.actorMovies.map((actor,index)=>{
                     return(
                         <Actor actor={actor}/>
                     );
