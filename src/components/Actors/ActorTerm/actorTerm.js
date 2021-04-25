@@ -40,7 +40,7 @@ const ActorTerm = (props)=>{
         //         </Card>
         //     </Link>
         // </Col>
-        <h1>{actor.name} {actor.actorId}</h1>
+        <Link to={`/actors/${actor.actorId}`}>{actor.name} </Link>
 
     )
 

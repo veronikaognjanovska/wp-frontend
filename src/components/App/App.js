@@ -53,24 +53,8 @@ function App() {
                         <MoviesGenre {...props}/>}/>
 
                     <Route path={"/actors/:id"} render={props=>
-                        <ActorInfo {...props}/>}/>}
+                        <ActorInfo {...props}/>}/>
 
-
-
-
-                    {/*<Route path={"/actors"} exact render={() =>*/}
-                    {/*    <Actors/>}/>*/}
-                    {/*<Route path={"/directors"} exact render={() =>*/}
-                    {/*    <Directors/>}/>*/}
-                    {/*<Route path={"/users"} exact render={() =>*/}
-                    {/*    <Users/>}/>*/}
-
-                    {/*<Route exact component={MovieTerm} path="/movies/:name"/>*/}
-
-                    {/*<Route path={"/tvSeries"} exact render={() =>*/}
-                    {/*    <TvSeries/>}/>*/}
-                    {/*<Route path={"/movies/:id"} exact render={()=>*/}
-                    {/*    <MovieTerm movies={this.state.movies}/>}/>*/}
                 </div>
             </main>
         </Router>

@@ -9,6 +9,7 @@ import "../../App/App.css"
 import GoldenLadderService from "../../../service/GoldenLadderService";
 import {Card, Col, Container} from "react-bootstrap";
 import CardImage from "../../Home/Image/image";
+import MovieInfo from "../MovieInfo/movieInfo";
 //import NotificationService from "../../../service/NotificationService";
 
 class MoviesGenre extends React.Component{
@@ -40,34 +41,43 @@ class MoviesGenre extends React.Component{
         if(movie==null){
             return <div>Hi</div>;
         }
+
         return (
-            <Container>
 
 
-
+        <div>
                 {movie.map((term) => {
 
                     return (
-                        <Col className="cardimage">
-                            <Link to={`/movies/${term.movieId}`}>
-                                <table>
-                                <tr>
-                                    <td>{term.originalTitle}
-                                    </td>
-                                    </tr>
-                                </table>
 
+                            <Link to={`/movies/${term.movieId}`}>
+                                <div className={"container mm-4 mt-5"}>
+                                    <div className={"row"}>
+                                        <div className={"table-responsive"}>
+                                            <table className={"table  tabela"}>
+                                                <thead>
+                                                <tr>
+                                                    <td className={"text-center"}>{term.originalTitle}</td>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+                            </div>
                             </Link>
-                        </Col>
+
                     )
 
                 })}
-
-
-            </Container>
+        </div>
 
         );
     }
+
+
+
 
 }
 export default MoviesGenre;

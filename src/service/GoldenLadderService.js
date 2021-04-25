@@ -11,6 +11,12 @@ const GoldenLadderService = {
 
         });
     },
+    addToFavourites:(id)=>{
+        return axios.get(`/m/${id}/favourites`)
+    },
+    addToWatchList:(id)=>{
+        return axios.get(`/m/${id}/watchlist`)
+    },
     getMoviesByGenre:(genre)=>{
         return axios.get(`/m/g/${genre}`);
     },

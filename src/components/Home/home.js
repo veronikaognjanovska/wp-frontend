@@ -55,31 +55,28 @@ class Home extends React.Component{
     render() {
             return(
             <div>
-                <div className={"row pt-4"}>
+                <div className={"row pt-5"}>
                 <div className={"col"}>
                     <h3 className={"upcoming-movies "}>Popular movies</h3>
                 </div>
                </div>
-
-                <div >
+                <div className={"pt-3"}>
                     <PopularMovies  popularMovies={this.state.popularMovies}/>
                 </div>
-
-                   <div className={"row mt-4"}>
+                <div className={"row mt-5"}>
                 <div className={"col"}>
                     <h3 className={"upcoming-movies"}>Newest movies</h3>
                 </div>
                    </div>
-                <div >
+                <div className={"pt-3"}>
                     <NewestMovies newestMovies={this.state.newestMovies}/>
                 </div>
-
-                   <div className={"row mt-4"}>
+                <div className={"row mt-5"}>
                        <div className={"col"}>
                     <h3 className={"upcoming-movies"}>Top Rated movies</h3>
                 </div>
                    </div>
-                <div >
+                <div className={"pt-3"}>
                     <TopRatedMovies  topRatedMovies={this.state.topRatedMovies}/>
                 </div>
 

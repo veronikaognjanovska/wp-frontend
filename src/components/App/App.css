@@ -1,6 +1,6 @@
 main{
   background-color: #f4c983;
-  height: 3000px;
+
 }
 .my-navbar{
   background-color: #91091e !important;
@@ -51,7 +51,7 @@ main{
 }
 .upcoming-movies{
 text-align: center;
-  color:darkred;
+  color: black;
 
 }
 .carousel-caption{
@@ -65,6 +65,10 @@ text-align: center;
 
 .cardimage{
   position: relative;
+}
+.card-title{
+  text-align: center;
+  color: black;
 }
 .image__img{
   display: block;
@@ -118,8 +122,13 @@ text-align: center;
   font-family: 'Comic Sans MS', 'Comic Sans', cursive;
 }
 
+.stars{
+ margin:auto;
+}
+.tabela{
 
-
+  background-color: bisque;
+}
 
 
 
