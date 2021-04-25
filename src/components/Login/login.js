@@ -3,13 +3,9 @@ import UserService from "../../service/UserService";
 import '../App/App.css';
 import NotificationService from "../../service/NotificationService";
 import './login.css';
-import axios from "axios";
+import FacebookLogin from "./FacebookLogin";
 
 class Login extends Component {
-
-    constructor() {
-        super();
-    }
 
     onFormSubmit = (e) => {
         e.preventDefault();
@@ -37,16 +33,6 @@ class Login extends Component {
             });
     };
 
-    handleDashboard() {
-        axios.get("http://localhost:8080/users/ti").then(res => {
-            if (res.data === "success") {
-                this.props.history.push("/home");
-            } else {
-                alert("Authentication failure");
-            }
-        });
-    }
-
     validate = (username, password) => {
         if (username === '' || password === '') {
             return false;
@@ -70,6 +56,7 @@ class Login extends Component {
                                className="form-control"
                                id="username"
                                name="username"
+                               value={'user'}
                         />
                     </div>
                     <div className="form-group">
@@ -78,6 +65,7 @@ class Login extends Component {
                                className="form-control"
                                id="password"
                                name="password"
+                               value={'user'}
                         />
                     </div>
                     <button id="submit" type="submit" className={"btn btn-primary float-right"}
@@ -85,7 +73,10 @@ class Login extends Component {
                     </button>
                 </form>
 
-
+                <div className={'facebook-div'}>
+                    Log in with Facebook
+                    <FacebookLogin/>
+                </div>
             </div>
 
 
