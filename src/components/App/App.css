@@ -1,5 +1,5 @@
 main{
-  background-color: white;
+  background-color: #f4c983;
   height: 3000px;
 }
 .my-navbar{
@@ -63,9 +63,6 @@ text-align: center;
   position:relative;
 }
 
-.main{
-  background-color: #f4c983;
-}
 .cardimage{
   position: relative;
 }

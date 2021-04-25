@@ -16,7 +16,6 @@ const header = (props) => {
 
     subscriber.subscribe((v) => {
         getChange();
-        console.log("here")
     })
 
     return (

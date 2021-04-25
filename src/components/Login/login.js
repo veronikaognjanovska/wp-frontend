@@ -3,6 +3,7 @@ import UserService from "../../service/UserService";
 import '../App/App.css';
 import NotificationService from "../../service/NotificationService";
 import './login.css';
+import FacebookLogin from "./FacebookLogin";
 
 class Login extends Component {
 
@@ -72,7 +73,10 @@ class Login extends Component {
                     </button>
                 </form>
 
-
+                <div className={'facebook-div'}>
+                    Log in with Facebook
+                    <FacebookLogin/>
+                </div>
             </div>
 
 
