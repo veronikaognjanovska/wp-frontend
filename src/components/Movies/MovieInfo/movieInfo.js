@@ -89,7 +89,7 @@ const MovieInfo = (props)=>{
                         activeColor="#ffd700"
                     />
                     <button type="button" className="btn btn-primary btn-circle btn-sm" onClick={addWatchList}>Add to watchlist</button>
-                    <button type="button" className="btn btn-danger btn-circle btn-sm">Add to favourites</button>
+                    <button type="button" className="btn btn-danger btn-circle btn-sm" onClick={addFavourites}>Add to favourites</button>
                     {/*<Trailer movieId={props.match.params.id}/>*/}
 
               <h3>Cast & Crew</h3>
