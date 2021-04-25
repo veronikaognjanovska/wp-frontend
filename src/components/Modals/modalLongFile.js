@@ -27,6 +27,7 @@ const ModalLongFile =  ({ handleClose, show, dataList, type }) => {
                                         <Link className={""}
                                               to={`${pageLink}${item.id}`} onClick={handleClose}>
                                             {item.text}
+                                            {console.log(item)}
                                         </Link>
                                     </li>
                                 );

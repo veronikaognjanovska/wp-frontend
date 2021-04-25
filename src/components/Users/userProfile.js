@@ -232,7 +232,7 @@ class UserProfile extends Component {
         UserService.fetchUserFavourites(this.state.username)
             .then((data) => {
                 let list = data.data.map(item => {
-                    return {id: item.id, text: item.title}
+                    return {id: item.movieId, text: item.originalTitle}
                 });
                 this.setState({dataList: list, type: 'Favorites'});
                 this.showModal();
@@ -242,7 +242,7 @@ class UserProfile extends Component {
         UserService.fetchUserWatchlist(this.state.username)
             .then((data) => {
                 let list = data.data.map(item => {
-                    return {id: item.id, text: item.title}
+                    return {id: item.movieId, text: item.originalTitle}
                 });
                 this.setState({dataList: list, type: 'Watch List'});
                 this.showModal();
