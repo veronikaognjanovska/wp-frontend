@@ -7,7 +7,7 @@ import MovieInfo from "../Movies/MovieInfo/movieInfo"
 import Home from '../Home/home';
 import Header from '../Header/header';
 import Movies from '../Movies/movies'
-
+import ActorInfo from "../Actors/ActorInfo/actorInfo";
 import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import MoviesGenre from "../Movies/MoviesGenre/moviesGenre";
@@ -39,6 +39,9 @@ function App() {
 
                     <Route  path={"/movies/genre/:genre"} render={props=>
                         <MoviesGenre {...props}/>}/>
+
+                    <Route path={"/actors/:id"} render={props=>
+                        <ActorInfo {...props}/>}/>}
 
 
 
