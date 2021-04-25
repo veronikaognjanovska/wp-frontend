@@ -79,6 +79,11 @@ const UserService = {
         return Promise.resolve('null');
     },
 
+
+    setLoggedInUserFacebook: () => {
+       console.log('user logged in using facebook')
+    },
+
 };
 
 export default UserService;
