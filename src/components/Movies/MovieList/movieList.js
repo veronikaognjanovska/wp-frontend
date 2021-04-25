@@ -8,9 +8,9 @@ const movieList = (props) => {
                 <nav className="nav d-flex justify-content-between">
 
                     <Link to={"/movies/genre/Comedy"} className="p-2 text-muted">COMEDY</Link>
-                    <Link to={"/movies/genre/Sci-FI"} className="p-2 text-muted">SCI-FI</Link>
+                    <Link to={"/movies/genre/Sci-Fi"} className="p-2 text-muted">SCI-FI</Link>
                     <Link to={"/movies/genre/Horror"} className="p-2 text-muted">HORROR</Link>
-                    <Link to={"/movies/genre/Romace"} className="p-2 text-muted">ROMANCE</Link>
+                    <Link to={"/movies/genre/Romance"} className="p-2 text-muted">ROMANCE</Link>
                     <Link to={"/movies/genre/Action"} className="p-2 text-muted">ACTION</Link>
                     <Link to={"/movies/genre/Thriller"} className="p-2 text-muted">THRILLER</Link>
                     <Link to={"/movies/genre/Drama"}   className="p-2 text-muted">DRAMA</Link>
