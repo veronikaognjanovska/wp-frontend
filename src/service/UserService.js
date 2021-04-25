@@ -27,6 +27,9 @@ const UserService = {
     fetchUserFollowing: (username) => {
         return axios.get(`/users/${username}/following`);
     },
+    fetchRatingForMovie:(movieId) =>{
+      return axios.get(`/m/${movieId}/rate`);
+    },
 
     editUser: (username, email, birthday) => {
         return axios.put(`/users/${username}/edit`, {
@@ -83,6 +86,45 @@ const UserService = {
     setLoggedInUserFacebook: () => {
        console.log('user logged in using facebook')
     },
+    getWatchlistForLoggedInUser:()=>{
+        const username = StorageService.getLoggedInUser()?.username;
+        if (username !== null & username !== undefined) {
+            return UserService.fetchUserWatchlist(username)
+                .then((data) => {
+                    let list = data.data.map(item => {
+                        return {movieId: item.movieId}
+                    });
+                    return Promise.resolve({username: username, watchlist: list});
+                });
+        }
+        return Promise.resolve('null');
+    },
+    getFavoritesForLoggedInUser:()=>{
+        const username = StorageService.getLoggedInUser()?.username;
+        if (username !== null & username !== undefined) {
+            return UserService.fetchUserFavourites(username)
+                .then((data) => {
+                    let list = data.data.map(item => {
+                        return {movieId: item.movieId}
+                    });
+                    return Promise.resolve({username: username, favorites: list});
+                });
+        }
+        return Promise.resolve('null');
+    },
+
+    getRatingForLoggedInUser:(movieId)=>{
+        const username = StorageService.getLoggedInUser()?.username;
+        if (username !== null & username !== undefined) {
+            return UserService.fetchRatingForMovie(movieId)
+                .then((data) => {
+                    console.log(data.data.rating);
+                    return Promise.resolve({username: username, rate: data.data.rating/2});
+
+                });
+        }
+        return Promise.resolve('null');
+    }
 
 };
 

@@ -56,7 +56,6 @@ class Login extends Component {
                                className="form-control"
                                id="username"
                                name="username"
-                               value={'user'}
                         />
                     </div>
                     <div className="form-group">
@@ -65,7 +64,6 @@ class Login extends Component {
                                className="form-control"
                                id="password"
                                name="password"
-                               value={'user'}
                         />
                     </div>
                     <button id="submit" type="submit" className={"btn btn-primary float-right"}

@@ -11,9 +11,10 @@ const header = (props) => {
 
     let username = UserService.getLoggedInUser();
     let searchInput = '';
-
+    const userUrl = "/users/" + username;
     const getChange = () => {
         username = UserService.getLoggedInUser();
+        console.log(username);
     }
 
     subscriber.subscribe((v) => {
@@ -22,7 +23,6 @@ const header = (props) => {
 
     const onInputChange = (event) => {
         searchInput = event.target.value;
-        console.log(searchInput)
     }
 
     const onInputSearch = () => {
@@ -65,7 +65,7 @@ const header = (props) => {
                     {
                         username !== undefined &&
                         <Nav className="mr-0">
-                            <Nav.Link href="/users/user" className="gold">User</Nav.Link>
+                            <Nav.Link href={userUrl} className="gold">User</Nav.Link>
                             <Nav.Link href="/logout" className="gold">Log out</Nav.Link>
                         </Nav>
                     }
