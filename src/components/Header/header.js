@@ -9,6 +9,7 @@ import UserService from "../../service/UserService";
 const header = (props) => {
 
     let username = UserService.getLoggedInUser();
+    let searchInput = '';
 
     const getChange = () => {
         username = UserService.getLoggedInUser();
@@ -17,6 +18,15 @@ const header = (props) => {
     subscriber.subscribe((v) => {
         getChange();
     })
+
+    const onInputChange = (event) => {
+        searchInput = event.target.value;
+        console.log(searchInput)
+    }
+
+    const onInputSearch = () => {
+        props.onSearch(searchInput);
+    }
 
     return (
         <header>
@@ -27,8 +37,10 @@ const header = (props) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Form inline className="mr-4">
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
-                        <Button variant="outline-warning">Search</Button>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2"
+                                     onChange={onInputChange}/>
+                        <Button variant="outline-warning" onClick={onInputSearch}>
+                            >Search </Button>
                     </Form>
                     <Nav className="mr-auto">
                         <Nav.Link href="/home" className="gold">Home</Nav.Link>

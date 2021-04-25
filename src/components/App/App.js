@@ -14,15 +14,24 @@ import Movies from '../Movies/movies'
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer} from 'react-notifications';
 import MoviesGenre from "../Movies/MoviesGenre/moviesGenre";
+import {useEffect, useState} from "react";
+import GoldenLadderService from "../../service/GoldenLadderService";
+
 
 function App() {
+
+    const[listSearch,setListSearch] = useState({});
+
+    // useEffect(()=>{
+    //     fetchMovie();
+    // },{})
 
 
     return (
         <Router>
             {/*<ReactNotification/>*/}
             <NotificationContainer/>
-            <Header/>
+            <Header onSearch={this.onSearch}/>
             <main className={"main"}>
                 <div className={"container"}>
                     <Route path={"/login"} exact render={() =>
@@ -67,6 +76,20 @@ function App() {
         </Router>
 
     );
+
+    const onSearch = (searchInput) => {
+        GoldenLadderService.search(searchInput)
+            .then((data)=>{
+                setListSearch(data.data)
+                console.log(data.data)
+                console.log(listSearch)
+
+            })
+            .catch(()=>{
+
+            });
+        console.log(searchInput)
+    }
 }
 
 export default App;

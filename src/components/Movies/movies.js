@@ -1,6 +1,4 @@
 import React,{useState,useEffect} from 'react';
-import {Link} from 'react-router-dom';
-import ApiService from "../../service/apiService";
 import DramaMovies from "../Movies/DramaMovies/dramaMovies"
 import ActionMovies from "../Movies/ActionMovies/actionMovie"
 import MovieList from "./MovieList/movieList"

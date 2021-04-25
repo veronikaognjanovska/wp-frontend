@@ -28,6 +28,9 @@ const GoldenLadderService = {
     },
 
 
+    search: (searchText) =>{
+        return axios.get(`/search/${searchText}`);
+    }
 
 
 };
