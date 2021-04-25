@@ -59,8 +59,9 @@ const MovieInfo = (props)=>{
                 window.location.pathname = "/movies"
             })
     }
-    const addFavourites = () => {
-        GoldenLadderService.addToFavourites(props.match.params.id)
+
+    const addFavorites = () => {
+        GoldenLadderService.addToFavorites(props.match.params.id)
             .then(() => {
                 // NotificationService.success('Success!', 'Movie is rated!');
                 // redirect to login
@@ -89,7 +90,7 @@ const MovieInfo = (props)=>{
                         activeColor="#ffd700"
                     />
                     <button type="button" className="btn btn-primary btn-circle btn-sm" onClick={addWatchList}>Add to watchlist</button>
-                    <button type="button" className="btn btn-danger btn-circle btn-sm" onClick={addFavourites}>Add to favourites</button>
+                    <button type="button" className="btn btn-danger btn-circle btn-sm" onClick={addFavorites}>Add to favorites</button>
                     {/*<Trailer movieId={props.match.params.id}/>*/}
 
               <h3>Cast & Crew</h3>

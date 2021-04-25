@@ -11,11 +11,17 @@ const GoldenLadderService = {
 
         });
     },
-    addToFavourites:(id)=>{
-        return axios.get(`/m/${id}/favourites`)
+    addToFavorites:(id)=>{
+        return axios.get(`/m/${id}/favorites`)
+    },
+    deleteFromFavorites:(id)=>{
+        return axios.get(`m/${id}/removefavorites`)
     },
     addToWatchList:(id)=>{
         return axios.get(`/m/${id}/watchlist`)
+    },
+    deleteFromWatchList:(id)=>{
+        return axios.get(`m/${id}/removewatchlist`)
     },
     getMoviesByGenre:(genre)=>{
         return axios.get(`/m/g/${genre}`);
