@@ -3,8 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {Button, Form, FormControl, Nav, Navbar} from 'react-bootstrap'
 import "./header.css";
 import logo from "../../assets/images/logo_dzvezda.png"
-import {subscriber} from "../../service/StorageService"
+import {StorageService, subscriber} from "../../service/StorageService"
 import UserService from "../../service/UserService";
+import GoldenLadderService from "../../service/GoldenLadderService";
 
 const header = (props) => {
 
@@ -25,7 +26,14 @@ const header = (props) => {
     }
 
     const onInputSearch = () => {
-        props.onSearch(searchInput);
+        GoldenLadderService.searchInput(searchInput)
+            .then((data) => {
+                StorageService.setSearchResults(data.data); //[{id:1,name:'name1',type:'movie'}]
+                window.location.pathname = "/search";
+            })
+            .catch(() => {
+
+            });
     }
 
     return (
@@ -40,7 +48,7 @@ const header = (props) => {
                         <FormControl type="text" placeholder="Search" className="mr-sm-2"
                                      onChange={onInputChange}/>
                         <Button variant="outline-warning" onClick={onInputSearch}>
-                            >Search </Button>
+                            Search </Button>
                     </Form>
                     <Nav className="mr-auto">
                         <Nav.Link href="/home" className="gold">Home</Nav.Link>

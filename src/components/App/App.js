@@ -14,24 +14,16 @@ import Movies from '../Movies/movies'
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer} from 'react-notifications';
 import MoviesGenre from "../Movies/MoviesGenre/moviesGenre";
-import {useEffect, useState} from "react";
-import GoldenLadderService from "../../service/GoldenLadderService";
-
+import Search from "../Search/search";
 
 function App() {
-
-    const[listSearch,setListSearch] = useState({});
-
-    // useEffect(()=>{
-    //     fetchMovie();
-    // },{})
 
 
     return (
         <Router>
             {/*<ReactNotification/>*/}
             <NotificationContainer/>
-            <Header onSearch={this.onSearch}/>
+            <Header/>
             <main className={"main"}>
                 <div className={"container"}>
                     <Route path={"/login"} exact render={() =>
@@ -40,22 +32,22 @@ function App() {
                         <Register/>}/>
                     <Route path={"/logout"} exact render={() =>
                         <Logout/>}/>
+                    <Route path={"/search"} exact render={() =>
+                        <Search />}/>
                     <Route path={"/users/:username"}
                            children={<UserProfile/>}
                     />
-                    <Route path={["/home","/"]} exact render={() =>
-                    <Home/>}/>
+                    <Route path={["/home", "/"]} exact render={() =>
+                        <Home/>}/>
 
-                    <Route exact path={"/movies/:id"} render={props=>
-                    <MovieInfo {...props}/>}/>
+                    <Route exact path={"/movies/:id"} render={props =>
+                        <MovieInfo {...props}/>}/>
 
-                    <Route exact path={"/movies"}  render={()=>
-                    <Movies/>}/>
+                    <Route exact path={"/movies"} render={() =>
+                        <Movies/>}/>
 
-                    <Route  path={"/movies/genre/:genre"} render={props=>
+                    <Route path={"/movies/genre/:genre"} render={props =>
                         <MoviesGenre {...props}/>}/>
-
-
 
 
                     {/*<Route path={"/actors"} exact render={() =>*/}
@@ -77,19 +69,7 @@ function App() {
 
     );
 
-    const onSearch = (searchInput) => {
-        GoldenLadderService.search(searchInput)
-            .then((data)=>{
-                setListSearch(data.data)
-                console.log(data.data)
-                console.log(listSearch)
 
-            })
-            .catch(()=>{
-
-            });
-        console.log(searchInput)
-    }
 }
 
 export default App;

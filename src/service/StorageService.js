@@ -48,6 +48,14 @@ const StorageService = {
     },
 
 
+    getSearchResults : () => {
+        return JSON.parse(localStorage.getItem('SEARCH_LIST'));
+    },
+    setSearchResults : (list) => {
+        localStorage.setItem('SEARCH_LIST', JSON.stringify(list));
+    },
+
+
 };
 
 export {StorageService, subscriber};

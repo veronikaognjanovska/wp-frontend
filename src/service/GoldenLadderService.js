@@ -28,7 +28,7 @@ const GoldenLadderService = {
     },
 
 
-    search: (searchText) =>{
+    searchInput: (searchText) =>{
         return axios.get(`/search/${searchText}`);
     }
 
