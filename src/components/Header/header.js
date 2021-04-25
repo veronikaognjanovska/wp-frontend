@@ -3,12 +3,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {Button, Form, FormControl, Nav, Navbar} from 'react-bootstrap'
 import "./header.css";
 import logo from "../../assets/images/logo_dzvezda.png"
-import {subscriber} from "../../service/StorageService"
+import {StorageService, subscriber} from "../../service/StorageService"
 import UserService from "../../service/UserService";
+import GoldenLadderService from "../../service/GoldenLadderService";
 
 const header = (props) => {
 
     let username = UserService.getLoggedInUser();
+    let searchInput = '';
 
     const getChange = () => {
         username = UserService.getLoggedInUser();
@@ -17,6 +19,22 @@ const header = (props) => {
     subscriber.subscribe((v) => {
         getChange();
     })
+
+    const onInputChange = (event) => {
+        searchInput = event.target.value;
+        console.log(searchInput)
+    }
+
+    const onInputSearch = () => {
+        GoldenLadderService.searchInput(searchInput)
+            .then((data) => {
+                StorageService.setSearchResults(data.data); //[{id:1,name:'name1',type:'movie'}]
+                window.location.pathname = "/search";
+            })
+            .catch(() => {
+
+            });
+    }
 
     return (
         <header>
@@ -27,8 +45,10 @@ const header = (props) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Form inline className="mr-4">
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
-                        <Button variant="outline-warning">Search</Button>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2"
+                                     onChange={onInputChange}/>
+                        <Button variant="outline-warning" onClick={onInputSearch}>
+                            Search </Button>
                     </Form>
                     <Nav className="mr-auto">
                         <Nav.Link href="/home" className="gold">Home</Nav.Link>
