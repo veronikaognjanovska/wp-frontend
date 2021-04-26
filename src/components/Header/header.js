@@ -14,7 +14,6 @@ const header = (props) => {
     const userUrl = "/users/" + username;
     const getChange = () => {
         username = UserService.getLoggedInUser();
-        console.log(username);
     }
 
     subscriber.subscribe((v) => {

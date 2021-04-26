@@ -12,12 +12,12 @@ const CardImage = (props) => {
 
         useEffect(() => {
             imdbIdFind();
-        }, {});
+        }, []);
 
         async function imdbIdFind() {
 
             var result = await ApiService.findAll(props.movie.movieId);
-            console.log(result);
+            // console.log(result);
             // console.log(result.data);
             // console.log(result.data.movie_results[0]);
             setPath(result.data.movie_results[0].poster_path);

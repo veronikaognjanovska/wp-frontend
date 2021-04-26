@@ -196,8 +196,11 @@ class UserProfile extends Component {
     }
 
     setUser = (data) => {
-        const birthdayStirng =
-            data.data.birthday.substr(0, 4) + '-' + data.data.birthday.substr(5, 2) + '-' + data.data.birthday.substr(8, 2);
+        let birthdayStirng = "";
+        if(data.data.birthday!==null){
+            birthdayStirng =
+                data.data.birthday.substr(0, 4) + '-' + data.data.birthday.substr(5, 2) + '-' + data.data.birthday.substr(8, 2);
+        }
         const user = {
             ...data.data,
             birthday: birthdayStirng

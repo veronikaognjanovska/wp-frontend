@@ -10,6 +10,7 @@ class Logout extends Component {
         let message = '';
         try {
             UserService.setLoggedInUser(null);
+            UserService.logout();
             message = 'User is logged out!';
             NotificationService.success('Success!', message);
         } catch (e) {

@@ -35,11 +35,16 @@ class FacebookLogin extends Component {
             if (response.authResponse) {
                 window.FB.api('/me', function (response) {
                     // {name: "", id: "id_from_facebook_long"}
-                    NotificationService.success('Success!', 'User is logged in!');
                     // set user
-                    UserService.setLoggedInUserFacebook(response);
-                    // redirect to home
-                    window.location.pathname = "/home"
+                    UserService.setLoggedInUserFacebook(response)
+                        .then((data)=>{
+                            NotificationService.success('Success!', 'User is logged in!');
+                            UserService.setLoggedInUser(data.data);
+                            window.location.pathname = "/home"
+                        })
+                        .catch(()=>{
+                            NotificationService.danger('Error!', 'User can not log in!');
+                        });
                 });
             } else {
                 console.log('User cancelled login or did not fully authorize.');

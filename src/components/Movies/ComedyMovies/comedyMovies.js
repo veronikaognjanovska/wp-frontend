@@ -33,7 +33,7 @@ const comedy =(props)=> {
                 {props.comedyMovies.map((movie, index) => {
 
                     return (
-                        <Col className="cardimage">
+                        <Col className="cardimage" key={index}>
                             <Link to={`/movies/${movie.movieId}`}>
                                 <Card >
 

@@ -27,8 +27,8 @@ const UserService = {
     fetchUserFollowing: (username) => {
         return axios.get(`/users/${username}/following`);
     },
-    fetchRatingForMovie:(movieId) =>{
-      return axios.get(`/m/${movieId}/rate`);
+    fetchRatingForMovie: (movieId) => {
+        return axios.get(`/m/${movieId}/rate`);
     },
 
     editUser: (username, email, birthday) => {
@@ -53,6 +53,17 @@ const UserService = {
         return axios.post('/api/auth/login', {
             "username": username,
             "password": password
+        });
+    },
+    logout: () => {
+        return axios.post('/api/auth/logout', {
+        });
+    },
+
+    loginFacebookUser: (username, id) => {
+        return axios.post('/api/auth/login/facebook', {
+            "username": username,
+            "id": id
         });
     },
 
@@ -83,10 +94,13 @@ const UserService = {
     },
 
 
-    setLoggedInUserFacebook: () => {
-       console.log('user logged in using facebook')
+    setLoggedInUserFacebook: (response) => {
+        return UserService.loginFacebookUser(response.name,response.id);
+        // console.log('user logged in using facebook')
+        // console.log(response)
+        // return Promise.resolve('{username: username, following: list}');
     },
-    getWatchlistForLoggedInUser:()=>{
+    getWatchlistForLoggedInUser: () => {
         const username = StorageService.getLoggedInUser()?.username;
         if (username !== null & username !== undefined) {
             return UserService.fetchUserWatchlist(username)
@@ -99,7 +113,7 @@ const UserService = {
         }
         return Promise.resolve('null');
     },
-    getFavoritesForLoggedInUser:()=>{
+    getFavoritesForLoggedInUser: () => {
         const username = StorageService.getLoggedInUser()?.username;
         if (username !== null & username !== undefined) {
             return UserService.fetchUserFavourites(username)
@@ -113,13 +127,13 @@ const UserService = {
         return Promise.resolve('null');
     },
 
-    getRatingForLoggedInUser:(movieId)=>{
+    getRatingForLoggedInUser: (movieId) => {
         const username = StorageService.getLoggedInUser()?.username;
         if (username !== null & username !== undefined) {
             return UserService.fetchRatingForMovie(movieId)
                 .then((data) => {
                     console.log(data.data.rating);
-                    return Promise.resolve({username: username, rate: data.data.rating/2});
+                    return Promise.resolve({username: username, rate: data.data.rating / 2});
 
                 });
         }
