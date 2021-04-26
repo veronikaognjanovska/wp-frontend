@@ -29,7 +29,7 @@ const ActorInfo = (props)=>{
     }
         return (
 
-            <div className=" p-3 p-md-5 text-white rounded bg-dark">
+            <div className=" p-3 p-md-5 text-white rounded" style={{backgroundColor:"#5b6d5b"}}>
                 <div className={"row"}>
                 <div className="col-6 d-none d-lg-block">
                     <ActorImage movieId={props.match.params.id}/>

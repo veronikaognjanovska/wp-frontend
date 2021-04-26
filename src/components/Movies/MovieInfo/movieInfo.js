@@ -141,7 +141,7 @@ class MovieInfo extends React.Component {
 
     render() {
         return (
-            <div className=" p-3 p-md-5 text-white rounded bg-dark">
+            <div className=" p-3 p-md-5 text-white rounded" style={{backgroundColor:"#5b6d5b"}}>
                 <div className={"row"}>
                     <div className="col-6 d-none d-lg-block">
                         <Image movieId={this.props.match.params.id}/>

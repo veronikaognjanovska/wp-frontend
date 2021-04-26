@@ -39,7 +39,7 @@ const header = (props) => {
     return (
         <header>
             <Navbar expand="lg" className="my-navbar">
-                <Navbar.Brand href="#home" className="gold">Golden Ladder
+                <Navbar.Brand href="/home" className="gold">Golden Ladder
                     <img className={"logo"} src={logo} alt="logo"/>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>

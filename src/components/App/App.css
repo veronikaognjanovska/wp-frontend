@@ -3,11 +3,12 @@ main{
 
 }
 .my-navbar{
-  background-color: #91091e !important;
+  /*background-color: #91091e !important;*/
+  background-color: #cf0000 !important;
   height:100px;
 }
 #basic-navbar-nav {
-  background-color: #91091e !important;
+  background-color: #cf0000 !important;
   padding: 20px;
 }
 
